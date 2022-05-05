@@ -59,21 +59,29 @@ a{
 .eng_key,
 .rus_key{
 	color: black;
-	font-size: 12px;
+	/* font-size: 12px; */
 	/* height: 20px; */
 	font-weight: 200;
 	margin-left: 2px;
 	margin-top: 2px;
-}
-.hidden{
-	display: none;
-}
-.main{
 	order: 1;
 	font-size: 20px;
 	color: rgb(40, 209, 40);
 	margin:auto ;
 }
+.hidden{
+	display: none;
+}
+.press{
+background-color: rgb(98, 243, 176);
+transform: scale(0.95);
+}
+/* .main{
+	order: 1;
+	font-size: 20px;
+	color: rgb(40, 209, 40);
+	margin:auto ;
+} */
 
 .backspace .eng_key,
 .tab .eng_key,
