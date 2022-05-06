@@ -59,9 +59,8 @@ a{
 .key-button:hover{
 	background-color: rgb(98, 243, 176);
 }
-.eng_key,
-.rus_key{
-	color: black;
+.eng_key{
+	/* color: black; */
 	/* font-size: 12px; */
 	/* height: 20px; */
 	font-weight: 200;
@@ -72,8 +71,24 @@ a{
 	color: rgb(40, 209, 40);
 	margin:auto ;
 }
+.rus_key{
+	/* color: black; */
+	/* font-size: 12px; */
+	/* height: 20px; */
+	font-weight: 200;
+	margin-left: 2px;
+	margin-top: 2px;
+	order: 1;
+	font-size: 20px;
+	color: rgb(40, 209, 40);
+	margin:8px auto ;
+}
 .hidden{
 	display: none;
+	
+}
+.novisible{
+	visibility: hidden;
 }
 .press{
 background-color: rgb(98, 243, 176);
@@ -99,6 +114,22 @@ transform: scale(0.95);
 	font-size: 16px;
 	font-weight: 500;
 	color: rgb(230, 102, 70);
+}
+.backspace .rus_key,
+.tab .rus_key,
+.capslock .rus_key,
+.enter .rus_key,
+.shiftleft .rus_key,
+.controlleft .rus_key,
+.controlright .rus_key{
+	font-size: 18px;
+	margin-top: 10px;
+}
+.delete .rus_key{
+	font-size: 16px;
+	font-weight: 500;
+	color: rgb(230, 102, 70);
+	margin-top: 12px;
 }
 .backspace{
 	width:119px;

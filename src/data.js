@@ -375,3 +375,21 @@ export const keyValueRus = [
 	
 	
 	// })
+
+
+	// for(let i= 0; i < keyValue.length; i++){
+	// 	let key = document.createElement('button')
+	// 	key.classList.add('key-button');
+	// 	key.classList.add(`${keyValue[i].code.toLowerCase()}`)
+	// 	key.id = `${keyValue[i].code}`;
+	// 	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'eng_key key main ${keyValue[i].code}'>${keyValue[i].key}</div>`);
+	// 	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'eng_key key caps ${keyValueCaps[i].code} hidden'>${keyValueCaps[i].key}</div>`);
+	// 	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'eng_key key shift ${keyValueShift[i].key} hidden'>${keyValueShift[i].key}</div>`);
+	// 	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'eng_key key capsShift ${keyValueCapsShift[i].code} hidden'>${keyValueCapsShift[i].key}</div>`)
+	// 	key.id = `${keyValue[i].code}`;
+	// 	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'rus_key key main ${keyValue[i].key} hidden novisible'>${keyValueRus[i].key}</div>`);
+	// 	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'rus_key key caps ${keyValueCaps[i].code} hidden novisible'>${keyValueCaps[i].code}</div>`);
+	// 	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'rus_key key shift  ${keyValueShift[i].key} hidden novisible'>${keyValueCaps[i].code}</div>`);
+	// 	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'rus_key key capsShift ${keyValueCapsShift[i].code} hidden novisible'>${keyValueCapsShift[i].code}</div>`);
+	// 	keyBoard.append(key)
+	// }
