@@ -567,6 +567,10 @@ for(let i= 0; i < keyValue.length; i++){
 
 	keyBoard.append(key)
 }
+let comment1 = 'Клавиатура создана на операционной системе Windows'
+let comment2 = '<div>Для переключения языка левый Crtl + левый Alt </div>'
+container.insertAdjacentHTML('afterbegin', `<div>${comment1}<br> ${comment2}</div>`);
+
 
 	
 //--------------------------work from keyboard
