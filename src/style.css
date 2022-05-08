@@ -38,41 +38,39 @@ a{
 	justify-content: flex-start;
 	align-items: flex-start;
 	flex-wrap: wrap;
-	background-color: rgb(151, 132, 132);
-	 width: 809px;
-	 min-width: 760px;
+	background-color: rgba(151, 132, 132, 0.452);
+	width: 811px;
+	min-width: 760px;
+	border: 1px solid rgba(151, 132, 132, 0.452);
+	border-radius: 3px;
+	
 }
 
 .key-button{
 	display: flex;
 	flex-direction:column;
-	/* flex-wrap: wrap; */
 	align-items: flex-start;
 	width: 45px;
 	height: 45px;
 	margin: 2px 2px;
 	border-radius: 5px;
+  border: .1px solid rgba(151, 132, 132, 0.452); 
+	background-color: rgba(250, 250, 250, 0.63); ;
 	overflow: hidden;
 }
 .key-button:hover{
 	background-color: rgb(98, 243, 176);
 }
 .eng_key{
-	/* color: black; */
-	/* font-size: 12px; */
-	/* height: 20px; */
 	font-weight: 200;
 	margin-left: 2px;
 	margin-top: 2px;
 	order: 1;
 	font-size: 20px;
-	color: rgb(40, 209, 40);
+	color: rgb(123, 209, 123);
 	margin:auto ;
 }
 .rus_key{
-	/* color: black; */
-	/* font-size: 12px; */
-	/* height: 20px; */
 	font-weight: 200;
 	margin-left: 2px;
 	margin-top: 2px;
@@ -89,7 +87,8 @@ a{
 	visibility: hidden;
 }
 .press{
-background-color: rgb(98, 243, 176);
+background-color: rgba(37, 97, 69, 0.568);
+color:rgb(98, 243, 176); 
 transform: scale(0.95);
 }
 /* .main{
