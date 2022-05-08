@@ -1,5 +1,8 @@
 
 //---------------------------------work capsLock
+
+let textField = document.querySelector('.text-field')
+console.log(textField)
 document.querySelector('#CapsLock').addEventListener('click', (e)=>{
 	console.log(e.target)
 	if(e.target.id === 'CapsLock' ||  e.target.classList.contains('CapsLock')){

@@ -528,7 +528,7 @@ export const keyValueCapsShiftRus = [
 	{charCode: 0, code: 'ArrowDown', key: '&darr;', keyCode: 40},
 	{charCode: 0, code: 'ArrowRight', key: '&rarr;', keyCode: 39},
 ]
-
+let saveText = JSON.parse(localStorage.getItem('CONTENT')) || '';
 let body = document.querySelector('body');
 
 let container = document.createElement('div');
@@ -542,6 +542,8 @@ container.appendChild(header);
 
 let textField = document.createElement('textarea');
 textField.classList.add('text-field');
+textField.id = 'field';
+textField.value = saveText;
 container.appendChild(textField);
 
 let keyBoard = document.createElement('div');
@@ -568,6 +570,7 @@ for(let i= 0; i < keyValue.length; i++){
 
 	
 //--------------------------work from keyboard
+
 document.addEventListener('keydown', (e)=>{
 	if(e.code !== 'CapsLock'){
 		document.querySelector(`#${e.code}`).classList.add('press');
@@ -622,10 +625,15 @@ document.addEventListener('keydown', (e)=>{
 				el.classList.contains('ru_main') ? el.classList.toggle('hidden') : null
 			}			
 		})		
-	}
+	}	
+	
+	if(!e.altKey || !e.ctrlKey && !e.forEach || !e.code == 'Backspace' || e.code == 'Enter' || e.code == 'Delete'){}
+		localStorage.setItem('CONTENT', JSON.stringify(textField.value));
+		// console.log(textField.value)
+		// console.log(textArr)
 })
 
- document.addEventListener('keyup', (e)=>{
+document.addEventListener('keyup', (e)=>{
 	if(e.code === 'CapsLock') {
 		return
 	}else{
@@ -655,3 +663,4 @@ document.addEventListener('keydown', (e)=>{
 	}
  })
 
+ 
