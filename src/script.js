@@ -627,10 +627,7 @@ document.addEventListener('keydown', (e)=>{
 		})		
 	}	
 	
-	if(!e.altKey || !e.ctrlKey && !e.forEach || !e.code == 'Backspace' || e.code == 'Enter' || e.code == 'Delete'){}
 		localStorage.setItem('CONTENT', JSON.stringify(textField.value));
-		// console.log(textField.value)
-		// console.log(textArr)
 })
 
 document.addEventListener('keyup', (e)=>{

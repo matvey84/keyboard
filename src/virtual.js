@@ -2,7 +2,7 @@
 //---------------------------------work capsLock
 
 let textField = document.querySelector('.text-field')
-console.log(textField)
+
 document.querySelector('#CapsLock').addEventListener('click', (e)=>{
 	console.log(e.target)
 	if(e.target.id === 'CapsLock' ||  e.target.classList.contains('CapsLock')){
@@ -49,6 +49,14 @@ document.querySelectorAll('.key-button')
 				el.classList.remove('hidden');
 			})
 		}
+		if(!e.altKey || !e.ctrlKey && !e.shiftKey || !e.code == 'Backspace' || e.code == 'Enter' || e.code == 'Delete'){
+      let textFromInput = textField.value;
+			let addCharacter = textFromInput.split('')
+			addCharacter.push(e.target.key)
+			console.log(e.target.textContent)
+
+		}
+
 }));
 
 document.querySelectorAll('.key-button')
