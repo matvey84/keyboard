@@ -58,8 +58,19 @@ document.querySelectorAll('.key-button')
 		|| e.target.id =='ControlRight' || e.target.id =='ControlLeft' || e.target.id == 'MetaLeft'){
 		null
 	}else{
-		addCharacter.push(e.target.textContent)
-		textField.value = addCharacter.join('')
+		if(e.target.textContent.length>1){
+			// let arr = []
+			for(el of e.target.childNodes){
+				if(!el.classList.contains('hidden')){
+					addCharacter.push(el.textContent)
+					textField.value = addCharacter.join('')
+				}
+			}	
+				
+		}else{
+			addCharacter.push(e.target.textContent)
+			textField.value = addCharacter.join('')
+		}
 	}
 	if(e.target.id == 'Backspace'){
 		addCharacter.pop(addCharacter.length-1)
