@@ -555,18 +555,22 @@ for(let i= 0; i < keyValue.length; i++){
 	key.classList.add('key-button');
 	key.classList.add(`${keyValue[i].code.toLowerCase()}`)
 	key.id = `${keyValue[i].code}`;
-	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'eng_key key main ${keyValue[i].code}'>${keyValue[i].key}</div>`);
-	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'eng_key key caps ${keyValueCaps[i].code} hidden'>${keyValueCaps[i].key}</div>`);
-	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'eng_key key shift ${keyValueShift[i].code} hidden'>${keyValueShift[i].key}</div>`);
-	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'eng_key key capsShift ${keyValueCapsShift[i].code} hidden'>${keyValueCapsShift[i].key}</div>`)
+	key.insertAdjacentHTML('afterbegin', `<span id=${keyValue[i].code} class = 'eng_key key main ${keyValue[i].code}'>${keyValue[i].key}</span>`);
+	key.insertAdjacentHTML('afterbegin', `<span id=${keyValue[i].code} class = 'eng_key key caps ${keyValueCaps[i].code} hidden'>${keyValueCaps[i].key}</span>`);
+	key.insertAdjacentHTML('afterbegin', `<span id=${keyValue[i].code} class = 'eng_key key shift ${keyValueShift[i].code} hidden'>${keyValueShift[i].key}</span>`);
+	key.insertAdjacentHTML('afterbegin', `<span id=${keyValue[i].code} class = 'eng_key key capsShift ${keyValueCapsShift[i].code} hidden'>${keyValueCapsShift[i].key}</span>`)
 
-	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'rus_key key ru_main ${keyValueRus[i].code} hidden'>${keyValueRus[i].key}</div>`);
-	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'rus_key key ru_caps ${keyValueCapsRus[i].code} hidden'>${keyValueCapsRus[i].key}</div>`);
-	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'rus_key key ru_shift ${keyValueShiftRus[i].code} hidden' >${keyValueShiftRus[i].key}</div>`);
-	key.insertAdjacentHTML('afterbegin', `<div id=${keyValue[i].code} class = 'rus_key key ru_capsShift ${keyValueCapsShiftRus[i].code} hidden'>${keyValueCapsShiftRus[i].key}</div>`);
+	key.insertAdjacentHTML('afterbegin', `<span id=${keyValue[i].code} class = 'rus_key key ru_main ${keyValueRus[i].code} hidden'>${keyValueRus[i].key}</span>`);
+	key.insertAdjacentHTML('afterbegin', `<span id=${keyValue[i].code} class = 'rus_key key ru_caps ${keyValueCapsRus[i].code} hidden'>${keyValueCapsRus[i].key}</span>`);
+	key.insertAdjacentHTML('afterbegin', `<span id=${keyValue[i].code} class = 'rus_key key ru_shift ${keyValueShiftRus[i].code} hidden' >${keyValueShiftRus[i].key}</span>`);
+	key.insertAdjacentHTML('afterbegin', `<span id=${keyValue[i].code} class = 'rus_key key ru_capsShift ${keyValueCapsShiftRus[i].code} hidden'>${keyValueCapsShiftRus[i].key}</span>`);
 
 	keyBoard.append(key)
 }
+let comment1 = 'Клавиатура создана на операционной системе Windows'
+let comment2 = '<div>Для переключения языка левый Crtl + левый Alt </div>'
+container.insertAdjacentHTML('afterbegin', `<div>${comment1}<br> ${comment2}</div>`);
+
 
 	
 //--------------------------work from keyboard
@@ -627,10 +631,7 @@ document.addEventListener('keydown', (e)=>{
 		})		
 	}	
 	
-	if(!e.altKey || !e.ctrlKey && !e.forEach || !e.code == 'Backspace' || e.code == 'Enter' || e.code == 'Delete'){}
 		localStorage.setItem('CONTENT', JSON.stringify(textField.value));
-		// console.log(textField.value)
-		// console.log(textArr)
 })
 
 document.addEventListener('keyup', (e)=>{
