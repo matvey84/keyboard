@@ -61,6 +61,20 @@ document.querySelectorAll('.key-button')
 		addCharacter.push(e.target.textContent)
 		textField.value = addCharacter.join('')
 	}
+	if(e.target.id == 'Backspace'){
+		addCharacter.pop(addCharacter.length-1)
+		textField.value = addCharacter.join('')
+	}
+	if(e.target.id == 'Enter'){
+		console.log(addCharacter)
+		addCharacter.splice(addCharacter.length+1, 0,'\n')
+		textField.value = addCharacter.join('')
+	}
+	if(e.target.id == 'Tab'){
+		console.log(addCharacter)
+		addCharacter.splice(addCharacter.length+1, 0,'\t')
+		textField.value = addCharacter.join('')
+	}
 
 }));
 
