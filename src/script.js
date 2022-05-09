@@ -1,4 +1,3 @@
-// import {keyValue, keyValueCaps,keyValueShift,keyValueCapsShift, keyValueRus, keyValueCapsRus, keyValueShiftrRus, keyValueCapsShiftRus } from './data.js';
 const keyValue = [
 	{charCode: 0, code: 'Backquote', key: '`', keyCode: 192},
 	{charCode: 0, code: 'Digit1', key: '1', keyCode: 49},
@@ -570,8 +569,6 @@ for(let i= 0; i < keyValue.length; i++){
 let comment1 = 'Клавиатура создана на операционной системе Windows'
 let comment2 = '<div>Для переключения языка левый Crtl + левый Alt </div>'
 container.insertAdjacentHTML('afterbegin', `<div>${comment1}<br> ${comment2}</div>`);
-
-
 	
 //--------------------------work from keyboard
 
