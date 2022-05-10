@@ -1,0 +1,150 @@
+*,
+*::before,
+*::after{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+body{
+	font-family: 'Roboto', sans-serif;
+	overflow-x: hidden;
+}
+a{
+	text-decoration: none;
+	width: 100%;
+}
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 0 auto 0 auto;
+}
+.title{
+	margin-top: 20px;
+	color: rgb(112, 106, 106);
+}
+
+.text-field{
+	width: 600px;
+	height: 150px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.keyboard{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	background-color: rgba(151, 132, 132, 0.452);
+	width: 811px;
+	min-width: 760px;
+	border: 1px solid rgba(151, 132, 132, 0.452);
+	border-radius: 3px;
+	
+}
+
+.key-button{
+	display: flex;
+	flex-direction:column;
+	align-items: flex-start;
+	width: 45px;
+	height: 45px;
+	margin: 2px 2px;
+	border-radius: 5px;
+  border: .1px solid rgba(151, 132, 132, 0.452); 
+	background-color: rgba(250, 250, 250, 0.63); ;
+	overflow: hidden;
+}
+.key-button:hover{
+	background-color: rgb(98, 243, 176);
+}
+.eng_key{
+	font-weight: 200;
+	margin-left: 2px;
+	margin-top: 2px;
+	order: 1;
+	font-size: 20px;
+	color: rgb(123, 209, 123);
+	margin:12px auto ;
+}
+.rus_key{
+	font-weight: 200;
+	margin-left: 2px;
+	margin-top: 2px;
+	order: 1;
+	font-size: 20px;
+	color: rgb(40, 209, 40);
+	margin: 12px auto ;
+}
+.hidden{
+	display: none;
+	
+}
+.novisible{
+	visibility: hidden;
+}
+.press{
+background-color: rgba(37, 97, 69, 0.568);
+color:rgb(98, 243, 176); 
+transform: scale(0.95);
+}
+.backspace .eng_key,
+.tab .eng_key,
+.capslock .eng_key,
+.enter .eng_key,
+.shiftleft .eng_key,
+.controlleft .eng_key,
+.controlright .eng_key{
+	font-size: 18px;
+}
+.delete .eng_key{
+	font-size: 16px;
+	font-weight: 500;
+	color: rgb(230, 102, 70);
+	margin-top: 14px;
+}
+.backspace .rus_key,
+.tab .rus_key,
+.capslock .rus_key,
+.enter .rus_key,
+.shiftleft .rus_key,
+.controlleft .rus_key,
+.controlright .rus_key{
+	font-size: 18px;
+	margin-top: 12px;
+}
+.delete .rus_key{
+	font-size: 16px;
+	font-weight: 500;
+	color: rgb(230, 102, 70);
+	margin-top: 14px;
+}
+.backspace{
+	width:119px;
+}
+.tab{
+	width:60px;
+}
+.delete{
+	width: 55px;
+}
+.capslock,
+.enter{
+	width: 106.5px;
+}
+.shiftleft{
+	width: 130px;
+}
+.shiftright{
+	width: 83px;
+}
+.controlleft,
+.controlright{
+	width:70px
+}
+.space{
+	width:363px
+}
