@@ -3,12 +3,14 @@
     "normalize.css": "^8.0.1",
     "pretier": "^0.0.1"
   },
-	"scripts":{
+  "scripts": {
     "lint": "eslint ./src",
-	  "lint:fix": "eslint ./src --fix"
-
-	},
+    "lint:fix": "eslint ./src --fix"
+  },
   "devDependencies": {
-    "eslint": "^8.14.0"
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-html": "^6.2.0"
   }
 }
