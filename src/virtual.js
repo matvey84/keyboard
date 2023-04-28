@@ -18,7 +18,10 @@ document.querySelector("#CapsLock").addEventListener("click", (e) => {
 
 document.querySelectorAll(".key-button").forEach((el) =>
   el.addEventListener("mousedown", (e) => {
-    console.log(e);
+
+    const textFromInput = textField.value;
+    const addCharacter = textFromInput.split("");
+
     if (
       e.target.id !== "CapsLock" ||
       !e.target.classList.contains("capslock")
@@ -53,8 +56,6 @@ document.querySelectorAll(".key-button").forEach((el) =>
         element.classList.remove("hidden");
       });
     }
-    const textFromInput = textField.value;
-    const addCharacter = textFromInput.split("");
 
     if (e.target.id === "Delete") {
       deleteButtonWork(addCharacter);
@@ -76,14 +77,22 @@ document.querySelectorAll(".key-button").forEach((el) =>
       null;
     } else if (e.target.textContent.length > 1) {
       for (const element of e.target.childNodes) {
-        if (!element.classList.contains("hidden")) {
-          addCharacter.push(element.textContent);
-          textField.value = addCharacter.join("");
+        if (!element.className.includes("hidden")) {
+          if (textField.selectionStart === textField.value.length) {
+            console.log(textField.selectionStart, textField.value.length);
+            addCharacter.push(element.textContent);
+            textField.value = addCharacter.join("");
+          }
+          insertText(element.textContent, addCharacter, textField.selectionStart);
         }
       }
     } else {
-      addCharacter.push(e.target.textContent);
-      textField.value = addCharacter.join("");
+      if (textField.selectionStart === textField.value.length) {
+        console.log(e.target.textContent)
+        addCharacter.push(e.target.textContent);
+        textField.value = addCharacter.join("");
+      }
+      insertText(e.target.textContent, addCharacter, textField.selectionStart);
     }
     if (e.target.id === "Enter") {
       addCharacter.splice(addCharacter.length + 1, 0, "\n");
@@ -93,8 +102,11 @@ document.querySelectorAll(".key-button").forEach((el) =>
       addCharacter.splice(addCharacter.length + 1, 0, "\t");
       textField.value = addCharacter.join("");
     }
+    textField.classList.add('higlight');
+    textField.focus();
     localStorage.setItem("CONTENT", JSON.stringify(textField.value));
   })
+  
 );
 
 document.querySelectorAll(".key-button").forEach((el) =>
@@ -133,6 +145,9 @@ document.querySelectorAll(".key-button").forEach((el) =>
         element.classList.add("hidden");
       });
     }
+    textField.classList.remove('higlight');
+    textField.focus();
+    localStorage.setItem("CONTENT", JSON.stringify(textField.value));
   })
 );
 
@@ -189,18 +204,14 @@ function backSpaceButtonWork(addCharacter) {
   localStorage.setItem("CONTENT", JSON.stringify(textField.value));
 }
 
-function insertText(chars, addCharacter) {
-  const textField = document.querySelector(".text-field");
-  let curssorPosition = textField.selectionStart;
-
+function insertText(chars, addCharacter, curssorPosition) {
   textField.value =
     addCharacter.slice(0, curssorPosition).join("") +
     chars +
-    addCharacter.slice(curssorPosition + 1).join("");
-  console.log("befor", textField.selectionStart);
+    addCharacter.slice(curssorPosition).join("");
   textField.selectionStart = curssorPosition + chars.length;
-  console.log("after", textField.selectionStart);
   textField.selectionEnd = textField.selectionStart;
   textField.focus();
   localStorage.setItem("CONTENT", JSON.stringify(textField.value));
+  
 }
