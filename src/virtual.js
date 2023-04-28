@@ -198,7 +198,7 @@ function backSpaceButtonWork(addCharacter) {
       addCharacter.slice(textField.selectionEnd).join("");
       
   }
-  textField.selectionStart = curssorPosition;
+  textField.selectionStart = curssorPosition - 1;
   textField.selectionEnd = textField.selectionStart;
   textField.focus();
   localStorage.setItem("CONTENT", JSON.stringify(textField.value));
