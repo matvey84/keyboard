@@ -1,112 +1,206 @@
 /* eslint-disable no-restricted-syntax */
 // ---------------------------------work capsLock
 
-const textField = document.querySelector('.text-field');
+const textField = document.querySelector(".text-field");
 
-document.querySelector('#CapsLock').addEventListener('click', (e) => {
-  if (e.target.id === 'CapsLock' || e.target.classList.contains('CapsLock')) {
-    document.querySelector('#CapsLock').classList.toggle('press');
+document.querySelector("#CapsLock").addEventListener("click", (e) => {
+  if (e.target.id === "CapsLock" || e.target.classList.contains("CapsLock")) {
+    document.querySelector("#CapsLock").classList.toggle("press");
   }
 
-  document.querySelectorAll('.main').forEach((el) => {
-    el.classList.toggle('hidden');
+  document.querySelectorAll(".main").forEach((el) => {
+    el.classList.toggle("hidden");
   });
-  document.querySelectorAll('.caps').forEach((el) => {
-    el.classList.toggle('hidden');
+  document.querySelectorAll(".caps").forEach((el) => {
+    el.classList.toggle("hidden");
   });
 });
-document.querySelectorAll('.key-button')
-  .forEach((el) => el.addEventListener('mousedown', (e) => {
-    if (e.target.id !== 'CapsLock' || !e.target.classList.contains('capslock')) {
-      document.querySelector(`#${e.target.id}`).classList.add('press');
+
+document.querySelectorAll(".key-button").forEach((el) =>
+  el.addEventListener("mousedown", (e) => {
+    console.log(e);
+    if (
+      e.target.id !== "CapsLock" ||
+      !e.target.classList.contains("capslock")
+    ) {
+      document.querySelector(`#${e.target.id}`).classList.add("press");
     }
 
-    if (e.target.id === 'ShiftLeft' || e.target.id === 'ShiftLeft') {
-      document.querySelectorAll('.main').forEach((item) => {
-        item.classList.add('hidden');
+    if (e.target.id === "ShiftLeft" || e.target.id === "ShiftLeft") {
+      document.querySelectorAll(".main").forEach((item) => {
+        item.classList.add("hidden");
       });
 
-      document.querySelectorAll('.shift').forEach((ele) => {
-        ele.classList.remove('hidden');
+      document.querySelectorAll(".shift").forEach((ele) => {
+        ele.classList.remove("hidden");
       });
     }
 
-    const capsLock = document.querySelector('.capslock');
-    if ((e.target.id === 'ShiftLeft' || e.target.id === 'ShiftLeft') && capsLock.classList.contains('press')) {
-      document.querySelectorAll('.shift').forEach((elem) => {
-        elem.classList.add('hidden');
+    const capsLock = document.querySelector(".capslock");
+    if (
+      (e.target.id === "ShiftLeft" || e.target.id === "ShiftLeft") &&
+      capsLock.classList.contains("press")
+    ) {
+      document.querySelectorAll(".shift").forEach((elem) => {
+        elem.classList.add("hidden");
       });
 
-      document.querySelectorAll('.caps').forEach((eleme) => {
-        eleme.classList.toggle('hidden');
+      document.querySelectorAll(".caps").forEach((eleme) => {
+        eleme.classList.toggle("hidden");
       });
 
-      document.querySelectorAll('.capsShift').forEach((element) => {
-        element.classList.remove('hidden');
+      document.querySelectorAll(".capsShift").forEach((element) => {
+        element.classList.remove("hidden");
       });
     }
     const textFromInput = textField.value;
-    const addCharacter = textFromInput.split('');
+    const addCharacter = textFromInput.split("");
 
-    if (e.target.id === 'Backspace' || e.target.id === 'Tab' || e.target.id === 'CapsLock'
-|| e.target.id === 'Delete' || e.target.id === 'Enter' || e.target.id === 'ShiftLeft'
-|| e.target.id === 'ShiftRight' || e.target.id === 'AltRight' || e.target.id === 'AltLeft'
-|| e.target.id === 'ControlRight' || e.target.id === 'ControlLeft' || e.target.id === 'MetaLeft') {
+    if (e.target.id === "Delete") {
+      deleteButtonWork(addCharacter);
+    } else if ( e.target.id === "Backspace") {
+      backSpaceButtonWork(addCharacter);
+    } else if (
+      e.target.id === "Tab" ||
+      e.target.id === "CapsLock" ||
+      e.target.id === "Enter" ||
+      e.target.id === "ShiftLeft" ||
+      e.target.id === "ShiftRight" ||
+      e.target.id === "AltRight" ||
+      e.target.id === "AltLeft" ||
+      e.target.id === "ControlRight" ||
+      e.target.id === "ControlLeft" ||
+      e.target.id === "MetaLeft"
+    ) {
       // eslint-disable-next-line no-unused-expressions
       null;
     } else if (e.target.textContent.length > 1) {
       for (const element of e.target.childNodes) {
-        if (!element.classList.contains('hidden')) {
+        if (!element.classList.contains("hidden")) {
           addCharacter.push(element.textContent);
-          textField.value = addCharacter.join('');
+          textField.value = addCharacter.join("");
         }
       }
     } else {
       addCharacter.push(e.target.textContent);
-      textField.value = addCharacter.join('');
+      textField.value = addCharacter.join("");
     }
-    if (e.target.id === 'Backspace') {
-      addCharacter.pop(addCharacter.length - 1);
-      textField.value = addCharacter.join('');
+    if (e.target.id === "Enter") {
+      addCharacter.splice(addCharacter.length + 1, 0, "\n");
+      textField.value = addCharacter.join("");
     }
-    if (e.target.id === 'Enter') {
-      addCharacter.splice(addCharacter.length + 1, 0, '\n');
-      textField.value = addCharacter.join('');
+    if (e.target.id === "Tab") {
+      addCharacter.splice(addCharacter.length + 1, 0, "\t");
+      textField.value = addCharacter.join("");
     }
-    if (e.target.id === 'Tab') {
-      addCharacter.splice(addCharacter.length + 1, 0, '\t');
-      textField.value = addCharacter.join('');
-    }
-  }));
+    localStorage.setItem("CONTENT", JSON.stringify(textField.value));
+  })
+);
 
-document.querySelectorAll('.key-button')
-  .forEach((el) => el.addEventListener('mouseup', (e) => {
-    if (e.target.id !== 'CapsLock' || !e.target.classList.contains('capslock')) {
-      document.querySelector(`#${e.target.id}`).classList.remove('press');
+document.querySelectorAll(".key-button").forEach((el) =>
+  el.addEventListener("mouseup", (e) => {
+    if (
+      e.target.id !== "CapsLock" ||
+      !e.target.classList.contains("capslock")
+    ) {
+      document.querySelector(`#${e.target.id}`).classList.remove("press");
     }
 
-    if (e.target.id === 'ShiftLeft' || e.target.id === 'ShiftLeft') {
-      document.querySelectorAll('.main').forEach((item) => {
-        item.classList.remove('hidden');
+    if (e.target.id === "ShiftLeft" || e.target.id === "ShiftLeft") {
+      document.querySelectorAll(".main").forEach((item) => {
+        item.classList.remove("hidden");
       });
 
-      document.querySelectorAll('.shift').forEach((ele) => {
-        ele.classList.add('hidden');
+      document.querySelectorAll(".shift").forEach((ele) => {
+        ele.classList.add("hidden");
       });
     }
 
-    const capsLock = document.querySelector('.capslock');
-    if ((e.target.id === 'ShiftLeft' || e.target.id === 'ShiftLeft') && capsLock.classList.contains('press')) {
-      document.querySelectorAll('.main').forEach((elem) => {
-        elem.classList.add('hidden');
+    const capsLock = document.querySelector(".capslock");
+    if (
+      (e.target.id === "ShiftLeft" || e.target.id === "ShiftLeft") &&
+      capsLock.classList.contains("press")
+    ) {
+      document.querySelectorAll(".main").forEach((elem) => {
+        elem.classList.add("hidden");
       });
 
-      document.querySelectorAll('.caps').forEach((eleme) => {
-        eleme.classList.toggle('hidden');
+      document.querySelectorAll(".caps").forEach((eleme) => {
+        eleme.classList.toggle("hidden");
       });
 
-      document.querySelectorAll('.capsShift').forEach((element) => {
-        element.classList.add('hidden');
+      document.querySelectorAll(".capsShift").forEach((element) => {
+        element.classList.add("hidden");
       });
     }
-  }));
+  })
+);
+
+function deleteButtonWork(addCharacter) {
+  const textField = document.querySelector(".text-field");
+  const curssorPosition = textField.selectionStart;
+  const removeCharAmmount = Math.abs(
+    textField.selectionStart - textField.selectionEnd
+  );
+
+  if (textField.selectionStart !== textField.selectionEnd) {
+
+    textField.value =
+      addCharacter.slice(0, curssorPosition).join("") +
+      addCharacter.slice(curssorPosition + removeCharAmmount).join("");
+
+  } else {
+
+    textField.value =
+      addCharacter.slice(0, curssorPosition).join("") +
+      addCharacter.slice(curssorPosition + 1).join("");
+
+  }
+  textField.selectionStart = curssorPosition;
+  textField.selectionEnd = textField.selectionStart;
+  textField.focus();
+  localStorage.setItem("CONTENT", JSON.stringify(textField.value));
+}
+
+function backSpaceButtonWork(addCharacter) {
+  
+  const textField = document.querySelector(".text-field");
+  const curssorPosition = Math.max(0, textField.selectionStart);
+  const removeCharAmmount = Math.abs(
+    textField.selectionStart - textField.selectionEnd
+  );
+
+  if (textField.selectionStart !== textField.selectionEnd) {
+
+    textField.value =
+      addCharacter.slice(0, curssorPosition).join("") +
+      addCharacter.slice(curssorPosition + removeCharAmmount).join("");
+
+  } else {
+    console.log()
+    textField.value =
+      addCharacter.slice(0, curssorPosition -1).join("") +
+      addCharacter.slice(textField.selectionEnd).join("");
+      
+  }
+  textField.selectionStart = curssorPosition;
+  textField.selectionEnd = textField.selectionStart;
+  textField.focus();
+  localStorage.setItem("CONTENT", JSON.stringify(textField.value));
+}
+
+function insertText(chars, addCharacter) {
+  const textField = document.querySelector(".text-field");
+  let curssorPosition = textField.selectionStart;
+
+  textField.value =
+    addCharacter.slice(0, curssorPosition).join("") +
+    chars +
+    addCharacter.slice(curssorPosition + 1).join("");
+  console.log("befor", textField.selectionStart);
+  textField.selectionStart = curssorPosition + chars.length;
+  console.log("after", textField.selectionStart);
+  textField.selectionEnd = textField.selectionStart;
+  textField.focus();
+  localStorage.setItem("CONTENT", JSON.stringify(textField.value));
+}
