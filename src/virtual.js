@@ -1,3 +1,8 @@
+import {
+  arrowButtonWork,
+  insertText,
+  backSpaceButtonWork,
+} from "./scripts/handlers.js";
 /* eslint-disable no-restricted-syntax */
 // ---------------------------------work capsLock
 
@@ -18,7 +23,6 @@ document.querySelector("#CapsLock").addEventListener("click", (e) => {
 
 document.querySelectorAll(".key-button").forEach((el) =>
   el.addEventListener("mousedown", (e) => {
-
     const textFromInput = textField.value;
     const addCharacter = textFromInput.split("");
 
@@ -59,7 +63,7 @@ document.querySelectorAll(".key-button").forEach((el) =>
 
     if (e.target.id === "Delete") {
       deleteButtonWork(addCharacter);
-    } else if ( e.target.id === "Backspace") {
+    } else if (e.target.id === "Backspace") {
       backSpaceButtonWork(addCharacter);
     } else if (
       e.target.id === "Tab" ||
@@ -78,21 +82,50 @@ document.querySelectorAll(".key-button").forEach((el) =>
     } else if (e.target.textContent.length > 1) {
       for (const element of e.target.childNodes) {
         if (!element.className.includes("hidden")) {
-          if (textField.selectionStart === textField.value.length) {
-            console.log(textField.selectionStart, textField.value.length);
-            addCharacter.push(element.textContent);
-            textField.value = addCharacter.join("");
+          console.log(element.id.toLowerCase().includes("arrow"));
+          if (
+            textField.selectionStart === textField.value.length &&
+            !e.target.id.toLowerCase().includes("arrow")
+          ) {
+            // addCharacter.push(element.textContent);
+            // textField.value = addCharacter.join("");
+            insertText(
+              element.textContent,
+              addCharacter,
+              textField.selectionStart
+            );
+          } else if (e.target.id.toLowerCase().includes("arrow")) {
+            arrowButtonWork(e)
+          } else {
+            insertText(
+              element.textContent,
+              addCharacter,
+              textField.selectionStart
+            );
           }
-          insertText(element.textContent, addCharacter, textField.selectionStart);
         }
       }
     } else {
-      if (textField.selectionStart === textField.value.length) {
-        console.log(e.target.textContent)
-        addCharacter.push(e.target.textContent);
-        textField.value = addCharacter.join("");
+      if (
+        textField.selectionStart === textField.value.length &&
+        !e.target.id.toLowerCase().includes("arrow")
+      ) {
+        // addCharacter.push(e.target.textContent);
+        // textField.value = addCharacter.join("");
+        insertText(
+          e.target.textContent,
+          addCharacter,
+          textField.selectionStart
+        );
+      } else if (e.target.id.toLowerCase().includes("arrow")) {
+        arrowButtonWork(e)
+      } else {
+        insertText(
+          e.target.textContent,
+          addCharacter,
+          textField.selectionStart
+        );
       }
-      insertText(e.target.textContent, addCharacter, textField.selectionStart);
     }
     if (e.target.id === "Enter") {
       addCharacter.splice(addCharacter.length + 1, 0, "\n");
@@ -102,11 +135,13 @@ document.querySelectorAll(".key-button").forEach((el) =>
       addCharacter.splice(addCharacter.length + 1, 0, "\t");
       textField.value = addCharacter.join("");
     }
-    textField.classList.add('higlight');
+    // if(e.target.id.toLowerCase().includes('arrow')) {
+    //   arrowButtonWork(e);
+    // }
+    textField.classList.add("higlight");
     textField.focus();
     localStorage.setItem("CONTENT", JSON.stringify(textField.value));
   })
-  
 );
 
 document.querySelectorAll(".key-button").forEach((el) =>
@@ -145,7 +180,7 @@ document.querySelectorAll(".key-button").forEach((el) =>
         element.classList.add("hidden");
       });
     }
-    textField.classList.remove('higlight');
+    textField.classList.remove("higlight");
     textField.focus();
     localStorage.setItem("CONTENT", JSON.stringify(textField.value));
   })
@@ -159,17 +194,13 @@ function deleteButtonWork(addCharacter) {
   );
 
   if (textField.selectionStart !== textField.selectionEnd) {
-
     textField.value =
       addCharacter.slice(0, curssorPosition).join("") +
       addCharacter.slice(curssorPosition + removeCharAmmount).join("");
-
   } else {
-
     textField.value =
       addCharacter.slice(0, curssorPosition).join("") +
       addCharacter.slice(curssorPosition + 1).join("");
-
   }
   textField.selectionStart = curssorPosition;
   textField.selectionEnd = textField.selectionStart;
@@ -177,41 +208,47 @@ function deleteButtonWork(addCharacter) {
   localStorage.setItem("CONTENT", JSON.stringify(textField.value));
 }
 
-function backSpaceButtonWork(addCharacter) {
-  
-  const textField = document.querySelector(".text-field");
-  const curssorPosition = Math.max(0, textField.selectionStart);
-  const removeCharAmmount = Math.abs(
-    textField.selectionStart - textField.selectionEnd
-  );
+// function backSpaceButtonWork(addCharacter) {
 
-  if (textField.selectionStart !== textField.selectionEnd) {
+//   const textField = document.querySelector(".text-field");
+//   const curssorPosition = Math.max(0, textField.selectionStart);
+//   const removeCharAmmount = Math.abs(
+//     textField.selectionStart - textField.selectionEnd
+//   );
 
-    textField.value =
-      addCharacter.slice(0, curssorPosition).join("") +
-      addCharacter.slice(curssorPosition + removeCharAmmount).join("");
+//   if (textField.selectionStart !== textField.selectionEnd) {
 
-  } else {
-    console.log()
-    textField.value =
-      addCharacter.slice(0, curssorPosition - 1).join("") +
-      addCharacter.slice(textField.selectionEnd).join("");
-      
-  }
-  textField.selectionStart = curssorPosition;
-  textField.selectionEnd = textField.selectionStart;
-  textField.focus();
-  localStorage.setItem("CONTENT", JSON.stringify(textField.value));
-}
+//     textField.value =
+//       addCharacter.slice(0, curssorPosition).join("") +
+//       addCharacter.slice(curssorPosition + removeCharAmmount).join("");
 
-function insertText(chars, addCharacter, curssorPosition) {
-  textField.value =
-    addCharacter.slice(0, curssorPosition).join("") +
-    chars +
-    addCharacter.slice(curssorPosition).join("");
-  textField.selectionStart = curssorPosition + chars.length;
-  textField.selectionEnd = textField.selectionStart;
-  textField.focus();
-  localStorage.setItem("CONTENT", JSON.stringify(textField.value));
-  
-}
+//   } else {
+//     textField.value =
+//       addCharacter.slice(0, curssorPosition - 1).join("") +
+//       addCharacter.slice(textField.selectionEnd).join("");
+
+//   }
+//   textField.selectionStart = curssorPosition-1;
+//   textField.selectionEnd = textField.selectionStart;
+//   textField.focus();
+//   localStorage.setItem("CONTENT", JSON.stringify(textField.value));
+// }
+
+// function insertText(chars, addCharacter, curssorPosition) {
+//   textField.value =
+//     addCharacter.slice(0, curssorPosition).join("") +
+//     chars +
+//     addCharacter.slice(curssorPosition).join("");
+//   textField.selectionStart = curssorPosition + chars.length;
+//   textField.selectionEnd = textField.selectionStart;
+//   textField.focus();
+//   localStorage.setItem("CONTENT", JSON.stringify(textField.value));
+// }
+
+// function arrowButtonWork(e) {
+//   const textField = document.querySelector(".text-field");
+
+// console.log('arrow');
+//   textField.focus();
+//   localStorage.setItem("CONTENT", JSON.stringify(textField.value));
+// }
