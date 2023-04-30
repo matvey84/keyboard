@@ -1654,7 +1654,8 @@ document.addEventListener('keydown', (e) => {
       }
     });
   }
-
+  textField.classList.add('higlight');
+  textField.focus();
   localStorage.setItem('CONTENT', JSON.stringify(textField.value));
 });
 
@@ -1685,4 +1686,7 @@ document.addEventListener('keyup', (e) => {
       el.classList.add('hidden');
     });
   }
+    textField.classList.remove('higlight');
+    textField.focus();
+    localStorage.setItem('CONTENT', JSON.stringify(textField.value));
 });
