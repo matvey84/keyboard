@@ -82,13 +82,10 @@ document.querySelectorAll(".key-button").forEach((el) =>
     } else if (e.target.textContent.length > 1) {
       for (const element of e.target.childNodes) {
         if (!element.className.includes("hidden")) {
-          console.log(element.id.toLowerCase().includes("arrow"));
           if (
             textField.selectionStart === textField.value.length &&
             !e.target.id.toLowerCase().includes("arrow")
           ) {
-            // addCharacter.push(element.textContent);
-            // textField.value = addCharacter.join("");
             insertText(
               element.textContent,
               addCharacter,
@@ -110,8 +107,6 @@ document.querySelectorAll(".key-button").forEach((el) =>
         textField.selectionStart === textField.value.length &&
         !e.target.id.toLowerCase().includes("arrow")
       ) {
-        // addCharacter.push(e.target.textContent);
-        // textField.value = addCharacter.join("");
         insertText(
           e.target.textContent,
           addCharacter,
@@ -135,9 +130,6 @@ document.querySelectorAll(".key-button").forEach((el) =>
       addCharacter.splice(addCharacter.length + 1, 0, "\t");
       textField.value = addCharacter.join("");
     }
-    // if(e.target.id.toLowerCase().includes('arrow')) {
-    //   arrowButtonWork(e);
-    // }
     textField.classList.add("higlight");
     textField.focus();
     localStorage.setItem("CONTENT", JSON.stringify(textField.value));

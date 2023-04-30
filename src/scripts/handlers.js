@@ -39,24 +39,19 @@ export function insertText(chars, addCharacter, curssorPosition) {
 export function arrowButtonWork(e) {
   const textField = document.querySelector(".text-field");
   let arrow = e.target;
-  // console.log(arrow.id.toLowerCase() === 'arrowup');
     if(arrow.id.toLowerCase() === 'arrowup'){
-      console.log(arrow.id)
       textField.selectionStart = 0;
       textField.selectionEnd = textField.selectionStart;
     } else if (arrow.id.toLowerCase() === 'arrowright') {
-      console.log(arrow.id)
       textField.selectionStart = Math.min(
         textField.textLength,
         textField.selectionEnd + 1,
       );
       textField.selectionEnd = textField.selectionStart;
     } else if (arrow.id.toLowerCase() === 'arrowdown') {
-      console.log(arrow.id)
       textField.selectionEnd = textField.textLength;
       textField.selectionStart = textField.selectionEnd;
     }  else {
-      console.log(arrow.id)
       textField.selectionStart = Math.max(0, textField.selectionStart - 1);
       textField.selectionEnd = textField.selectionStart;
     }
