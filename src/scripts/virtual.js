@@ -2,7 +2,7 @@ import {
   arrowButtonWork,
   insertText,
   backSpaceButtonWork,
-} from "./scripts/handlers.js";
+} from "./handlers.js";
 /* eslint-disable no-restricted-syntax */
 // ---------------------------------work capsLock
 

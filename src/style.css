@@ -16,7 +16,8 @@ a {
   text-decoration: none;
   width: 100%;
 }
-.container {
+.container,
+.hint {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -29,6 +30,7 @@ a {
   margin-top: 20px;
   color: rgb(112, 106, 106);
 }
+
 .text-field {
   font-family: "Roboto Mono", monospace;
   font-size: 1.05rem;
