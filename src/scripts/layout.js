@@ -1,5 +1,4 @@
-/* eslint-disable no-plusplus */
-const keyValue = [
+export const keyValue = [
   {
     charCode: 0,
     code: "Backquote",
@@ -385,7 +384,7 @@ const keyValue = [
     keyCode: 39,
   },
 ];
-const keyValueCaps = [
+export const keyValueCaps = [
   {
     charCode: 0,
     code: "Backquote",
@@ -771,7 +770,7 @@ const keyValueCaps = [
     keyCode: 39,
   },
 ];
-const keyValueShift = [
+export const keyValueShift = [
   {
     charCode: 126,
     code: "Backquote",
@@ -1157,7 +1156,7 @@ const keyValueShift = [
     keyCode: 39,
   },
 ];
-const keyValueCapsShift = [
+export const keyValueCapsShift = [
   {
     charCode: 126,
     code: "Backquote",
@@ -3087,199 +3086,5 @@ export const keyValueCapsShiftRus = [
     keyCode: 39,
   },
 ];
-const saveText = JSON.parse(localStorage.getItem("CONTENT")) || "";
-const LANG = JSON.parse(localStorage.getItem("lang")) || 'eng'
-const body = document.querySelector("body");
 
-const container = document.createElement("div");
-container.classList.add("container");
-body.append(container);
-
-const header = document.createElement("h1");
-header.classList.add("title");
-header.innerText = "Virtual Keyboard V1.0";
-container.appendChild(header);
-
-const textField = document.createElement("textarea");
-textField.classList.add("text-field");
-textField.id = "field";
-textField.value = saveText;
-container.appendChild(textField);
-
-const keyBoard = document.createElement("div");
-keyBoard.classList.add("keyboard");
-container.append(keyBoard);
-
-function createButton(keyValue) {
-  for (let i = 0; i < keyValue.length; i++) {
-    const key = document.createElement("button");
-    key.classList.add("key-button");
-    key.classList.add(`${keyValue[i].code.toLowerCase()}`);
-    key.id = `${keyValue[i].code}`;
-    key.insertAdjacentHTML(
-      "afterbegin",
-      `<span id=${keyValue[i].code} class = 'eng_key key main ${keyValue[i].code} ${LANG !== 'eng' ? 'hidden' : ''}'>${keyValue[i].key}</span>`
-    );
-    key.insertAdjacentHTML(
-      "afterbegin",
-      `<span id=${keyValue[i].code} class = 'eng_key key caps ${keyValueCaps[i].code} hidden'>${keyValueCaps[i].key}</span>`
-    );
-    key.insertAdjacentHTML(
-      "afterbegin",
-      `<span id=${keyValue[i].code} class = 'eng_key key shift ${keyValueShift[i].code} hidden'>${keyValueShift[i].key}</span>`
-    );
-    key.insertAdjacentHTML(
-      "afterbegin",
-      `<span id=${keyValue[i].code} class = 'eng_key key capsShift ${keyValueCapsShift[i].code} hidden'>${keyValueCapsShift[i].key}</span>`
-    );
-
-    key.insertAdjacentHTML(
-      "afterbegin",
-      `<span id=${keyValue[i].code} class = 'rus_key key ru_main ${keyValueRus[i].code} ${LANG === 'eng' ? 'hidden' : ''}'>${keyValueRus[i].key}</span>`
-    );
-    key.insertAdjacentHTML(
-      "afterbegin",
-      `<span id=${keyValue[i].code} class = 'rus_key key ru_caps ${keyValueCapsRus[i].code} hidden'>${keyValueCapsRus[i].key}</span>`
-    );
-    key.insertAdjacentHTML(
-      "afterbegin",
-      `<span id=${keyValue[i].code} class = 'rus_key key ru_shift ${keyValueShiftRus[i].code} hidden' >${keyValueShiftRus[i].key}</span>`
-    );
-    key.insertAdjacentHTML(
-      "afterbegin",
-      `<span id=${keyValue[i].code} class = 'rus_key key ru_capsShift ${keyValueCapsShiftRus[i].code} hidden'>${keyValueCapsShiftRus[i].key}</span>`
-    );
-
-    keyBoard.append(key);
-  }
-}
-createButton(keyValue);
-
-const comment1 = "Клавиатура создана на операционной системе Windows";
-const comment2 = "<div>Для переключения языка левый Crtl + левый Alt </div>";
-container.insertAdjacentHTML(
-  "afterbegin",
-  `<div>${comment1}<br> ${comment2}</div>`
-);
-
-// --------------------------work from keyboard
-
-document.addEventListener("keydown", (e) => {
-  if (e.code !== "CapsLock") {
-    document.querySelector(`#${e.code}`).classList.add("press");
-  } else {
-    document.querySelector("#CapsLock").classList.toggle("press");
-    document
-      .querySelectorAll(".main")
-      .forEach((el) => el.classList.toggle("hidden")); // выкл кнопки
-    document
-      .querySelectorAll(".caps")
-      .forEach((el) => el.classList.toggle("hidden")); // вкл кнопку
-  }
-
-  if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
-    document.querySelectorAll(".key").forEach((el) => {
-      if (el.classList.contains("main")) {
-        el.classList.add("hidden");
-      } else {
-        document
-          .querySelectorAll(".shift")
-          .forEach((item) => item.classList.remove("hidden"));
-      }
-    });
-  }
-
-  const capsLock = document.querySelector(".capslock");
-  if (
-    (e.code === "ShiftLeft" || e.code === "ShiftLeft") &&
-    capsLock.classList.contains("press")
-  ) {
-    document.querySelectorAll(".shift").forEach((el) => {
-      el.classList.add("hidden");
-    });
-    document.querySelectorAll(".caps").forEach((el) => {
-      el.classList.add("hidden");
-    });
-    document.querySelectorAll(".capsShift").forEach((el) => {
-      el.classList.remove("hidden");
-    });
-  }
-
-  if ((e.ctrlKey && e.altKey)) {
-    const LANG = JSON.parse(localStorage.getItem("lang")) === 'eng' ? 'rus' : 'eng'
-    document
-      .querySelectorAll(".ru_main")
-      .forEach((el) => el.classList.toggle("main"));
-    document
-      .querySelectorAll(".ru_caps")
-      .forEach((el) => el.classList.toggle("caps"));
-    document
-      .querySelectorAll(".ru_shift")
-      .forEach((el) => el.classList.toggle("shift"));
-    document
-      .querySelectorAll(".ru_capsShift")
-      .forEach((el) => el.classList.toggle("capsShift"));
-
-    document.querySelectorAll(".eng_key").forEach((el) => {
-      if (document.querySelector("#CapsLock").classList.contains("press")) {
-        // eslint-disable-next-line no-unused-expressions
-        el.classList.contains("caps")
-          ? el.classList.remove("hidden")
-          : el.classList.add("hidden");
-      } else {
-        // eslint-disable-next-line no-unused-expressions
-        el.classList.contains("main")
-          ? el.classList.remove("hidden")
-          : el.classList.add("hidden");
-      }
-    });
-    document.querySelectorAll(".rus_key").forEach((el) => {
-      if (document.querySelector("#CapsLock").classList.contains("press")) {
-        // eslint-disable-next-line no-unused-expressions
-        el.classList.contains("ru_caps") ? el.classList.toggle("hidden") : null;
-      } else {
-        // eslint-disable-next-line no-unused-expressions
-        el.classList.contains("ru_main") ? el.classList.toggle("hidden") : null;
-      }
-    });
-    localStorage.setItem("lang", JSON.stringify(LANG));
-  }
-  textField.classList.add("higlight");
-  textField.focus();
-  localStorage.setItem("CONTENT", JSON.stringify(textField.value));
-});
-
-document.addEventListener("keyup", (e) => {
-  if (e.code === "CapsLock") {
-    return;
-  }
-  document.querySelector(`#${e.code}`).classList.remove("press");
-
-  if (e.code === "ShiftLeft" || e.code === "ShiftLeft") {
-    document.querySelectorAll(".main").forEach((el) => {
-      el.classList.remove("hidden");
-    });
-    document.querySelectorAll(".shift").forEach((el) => {
-      el.classList.add("hidden");
-    });
-  }
-
-  const capsLock = document.querySelector(".capslock");
-  if (
-    (e.code === "ShiftLeft" || e.code === "ShiftLeft") &&
-    capsLock.classList.contains("press")
-  ) {
-    document.querySelectorAll(".main").forEach((el) => {
-      el.classList.add("hidden");
-    });
-    document.querySelectorAll(".caps").forEach((el) => {
-      el.classList.toggle("hidden");
-    });
-    document.querySelectorAll(".capsShift").forEach((el) => {
-      el.classList.add("hidden");
-    });
-  }
-  textField.classList.remove("higlight");
-  textField.focus();
-  localStorage.setItem("CONTENT", JSON.stringify(textField.value));
-});
+export const library = [keyValue, keyValueCaps, keyValueShift, keyValueCapsShift, keyValueRus, keyValueCapsRus, keyValueShiftRus, keyValueCapsShiftRus]
