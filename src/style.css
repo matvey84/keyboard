@@ -1,0 +1,208 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400&family=Roboto:wght@300;400&display=swap");
+body {
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+	background-color: black;
+}
+a {
+  text-decoration: none;
+  width: 100%;
+}
+.container,
+.hint {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  background-color: transparent;
+  color: green;
+}
+.title {
+  margin-top: 20px;
+  color: rgb(112, 106, 106);
+}
+
+.text-field {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.05rem;
+  font-weight: 600;
+  min-width: 811px;
+  max-width: 811px;
+  height: 240px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: green;
+  outline: 1px solid green;
+  border: none;
+  background-color: transparent;
+	padding: 2.5px;
+  border-radius: 3px;
+	overflow-y: auto;
+}
+.keyboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: transparent;
+  width: 811px;
+  min-width: 760px;
+  border: 1px solid green;
+  border-radius: 3px;
+}
+.higlight {
+	box-shadow: 1px 1px 10px 0px green;
+}
+
+.key-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 45px;
+  height: 45px;
+  margin: 2px 2px;
+  border-radius: 5px;
+  border: 0.1px solid green;
+  background-color: transparent;
+  overflow: hidden;
+	cursor: pointer;
+}
+.key-button:hover {
+  box-shadow: 1px 1px 10px 0px green inset;
+}
+.eng_key {
+  font-weight: 200;
+  margin-left: 2px;
+  margin-top: 2px;
+  order: 1;
+  font-size: 20px;
+  color: green;
+  margin: 12px auto;
+}
+.rus_key {
+  font-weight: 200;
+  margin-left: 2px;
+  margin-top: 2px;
+  order: 1;
+  font-size: 20px;
+  color: green;
+  margin: 12px auto;
+}
+.hidden {
+  display: none;
+}
+.novisible {
+  visibility: hidden;
+}
+.press {
+  background-color: green;
+  transform: scale(0.99);
+}
+.press > .eng_key,
+.press > .rus_key {
+  color: black;
+}
+.backspace .eng_key,
+.tab .eng_key,
+.capslock .eng_key,
+.enter .eng_key,
+.shiftleft .eng_key,
+.controlleft .eng_key,
+.controlright .eng_key {
+  font-size: 18px;
+}
+
+.delete .eng_key {
+  font-size: 16px;
+  font-weight: 500;
+  color: red;
+  margin-top: 14px;
+}
+
+.delete.press {
+  background-color: red;
+	box-shadow: none;
+}
+.delete.press > .eng_key {
+	font-size: 16px;
+  color: black;
+}
+
+.delete .rus_key {
+  font-size: 16px;
+  font-weight: 500;
+  color: red;
+  margin-top: 14px;
+}
+.delete.press > .rus_key {
+	font-size: 16px;
+  color: black;
+}
+
+.backspace .rus_key,
+.tab .rus_key,
+.capslock .rus_key,
+.enter .rus_key,
+.shiftleft .rus_key,
+.controlleft .rus_key,
+.controlright .rus_key {
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+.backspace {
+  width: 119px;
+}
+
+.tab {
+  width: 60px;
+}
+
+.delete {
+  width: 55px;
+}
+
+.capslock,
+.enter {
+  width: 106.5px;
+}
+.shiftleft {
+  width: 130px;
+}
+.shiftright {
+  width: 83px;
+}
+.controlleft,
+.controlright {
+  width: 70px;
+}
+.space {
+  width: 363px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: transparent;
+  border-radius: 3px;
+  outline: 1px solid green;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 1px 1px 5px green;
+}
